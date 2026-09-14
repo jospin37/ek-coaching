@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edith Kanzie Coaching — Accueil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,560;9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000000;
+    --bg-soft:#0A0002;
+    --violet:#6D001A;
+    --violet-deep:#38000D;
+    --gold:#F5F0E6;
+    --gold-soft:#C41F44;
+    --cream:#EDE6D8;
+    --muted:#A99C8E;
+    --glass-fill:rgba(255,255,255,0.055);
+    --glass-fill-strong:rgba(255,255,255,0.09);
+    --glass-border:rgba(255,255,255,0.14);
+    --radius:26px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces',serif;
+    font-weight:560;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+
+  ::selection{background:var(--gold);color:#1A0006;}
+
+  /* ---------- focus ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold-soft);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 28px;
+    border-radius:999px;
+    font-size:15px;
+    font-weight:600;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, background .3s ease;
+  }
+  .btn-gold{
+    background:var(--gold);
+    color:#1A0006;
+    box-shadow:0 10px 30px -10px rgba(109,0,26,.45);
+  }
+  .btn-gold:hover{transform:translateY(-2px); box-shadow:0 16px 34px -8px rgba(109,0,26,.55);}
+  .btn-glass{
+    background:var(--glass-fill);
+    border:1px solid var(--glass-border);
+    color:var(--cream);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+  }
+  .btn-glass:hover{background:var(--glass-fill-strong); transform:translateY(-2px);}
+  .btn-ghost{
+    background:transparent;
+    border:1px solid rgba(237,230,216,.35);
+    color:var(--cream);
+  }
+  .btn-ghost:hover{border-color:var(--gold-soft); color:var(--gold-soft);}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 40px;
+    max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces',serif; font-size:22px; font-weight:650;
+    display:flex; flex-direction:column; line-height:1;
+  }
+  .logo span{font-family:'Inter',sans-serif; font-size:10.5px; letter-spacing:.14em; color:var(--gold-soft); margin-top:4px;}
+  nav.links{display:flex; gap:34px; font-size:14.5px; color:var(--muted);}
+  nav.links a{position:relative; padding:4px 0; transition:color .25s ease;}
+  nav.links a:hover{color:var(--cream);}
+  nav.links a.active{color:var(--gold-soft);}
+  nav.links a.active::after{
+    content:''; position:absolute; left:0; right:0; bottom:-6px; height:2px;
+    background:var(--gold-soft); border-radius:2px;
+  }
+  .nav-cta{display:flex; align-items:center; gap:22px;}
+  .burger{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:64px 40px 40px;
+    max-width:1180px; margin:0 auto;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:30px;
+    align-items:stretch;
+  }
+  .hero-panel{
+    position:relative;
+    background:linear-gradient(155deg, var(--violet) 0%, var(--violet-deep) 78%);
+    border-radius:46px 130px 46px 46px;
+    padding:64px 54px;
+    overflow:hidden;
+    display:flex; flex-direction:column; justify-content:center;
+    min-height:560px;
+  }
+  .hero-ghost{
+    position:absolute;
+    top:-6%; left:-2%;
+    font-size:150px;
+    font-weight:650;
+    color:rgba(237,230,216,.08);
+    filter:blur(2px);
+    white-space:nowrap;
+    pointer-events:none;
+    user-select:none;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    color:var(--gold-soft); font-size:13.5px; font-weight:500;
+    margin-bottom:22px;
+    opacity:0; transform:translateY(14px);
+    animation:riseIn .8s cubic-bezier(.2,.8,.2,1) .1s forwards;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-soft);}
+  .hero-panel h1{
+    position:relative;
+    font-size:clamp(38px, 4.4vw, 58px);
+    line-height:1.04;
+    color:var(--cream);
+    max-width:11.5ch;
+  }
+  .hero-panel h1 .line{
+    display:block;
+    opacity:0; transform:translateY(28px);
+    animation:riseIn .85s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  .hero-panel h1 .line:nth-child(1){animation-delay:.22s;}
+  .hero-panel h1 .line:nth-child(2){animation-delay:.36s;}
+  .hero-panel h1 .accent{color:var(--gold-soft); font-style:italic;}
+  .hero-sub{
+    margin-top:22px;
+    color:var(--muted);
+    max-width:38ch;
+    font-size:16.5px;
+    opacity:0; transform:translateY(18px);
+    animation:riseIn .8s cubic-bezier(.2,.8,.2,1) .52s forwards;
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex; align-items:center; gap:18px;
+    opacity:0; transform:translateY(18px);
+    animation:riseIn .8s cubic-bezier(.2,.8,.2,1) .66s forwards;
+  }
+  .hero-actions .microcopy{font-size:13px; color:var(--muted);}
+  @keyframes riseIn{to{opacity:1; transform:translateY(0);}}
+
+  .hero-visual{
+    position:relative;
+    border-radius:46px;
+    background:radial-gradient(120% 120% at 30% 20%, #1A0008 0%, #070001 70%);
+    border:1px solid rgba(255,255,255,.06);
+    display:flex; align-items:center; justify-content:center;
+    min-height:560px;
+    overflow:hidden;
+  }
+  .orbit{
+    position:absolute; width:330px; height:330px;
+    border:1px dashed rgba(237,230,216,.16);
+    border-radius:50%;
+    animation:spin 26s linear infinite;
+  }
+  .orbit::before{
+    content:''; position:absolute; top:-5px; left:50%;
+    width:10px; height:10px; margin-left:-5px;
+    background:var(--gold-soft); border-radius:50%;
+    box-shadow:0 0 18px 4px rgba(196,31,68,.55);
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @keyframes spinReverse{to{transform:rotate(-360deg);}}
+
+  .monogram{
+    position:relative;
+    width:240px; height:240px;
+    border-radius:50%;
+    background:linear-gradient(160deg, var(--gold) 0%, #D9CFC0 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 30px 60px -18px rgba(0,0,0,.6);
+    animation:floaty 6s ease-in-out infinite;
+  }
+  .monogram span{
+    font-family:'Fraunces',serif; font-size:78px; color:#1A0006; font-weight:650;
+  }
+  @keyframes floaty{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-16px);}
+  }
+
+  .badge-float{
+    position:absolute;
+    padding:14px 18px;
+    border-radius:18px;
+    background:var(--glass-fill);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    font-size:13px;
+    display:flex; align-items:center; gap:10px;
+    animation:floaty 7s ease-in-out infinite;
+  }
+  .badge-float.b1{top:14%; left:8%; animation-delay:.3s;}
+  .badge-float.b2{bottom:12%; right:9%; animation-delay:1.1s;}
+  .badge-float strong{font-family:'Fraunces',serif; font-weight:560; font-size:20px; color:var(--gold-soft); display:block;}
+  .badge-float small{color:var(--muted); font-size:12px;}
+
+  .scroll-cue{
+    max-width:1180px; margin:0 auto; padding:0 40px 8px;
+    display:flex; align-items:center; gap:12px;
+    color:var(--muted); font-size:12.5px;
+  }
+  .scroll-cue .stick{
+    width:1px; height:34px; background:linear-gradient(var(--gold-soft), transparent);
+    position:relative; overflow:hidden;
+  }
+  .scroll-cue .stick::after{
+    content:''; position:absolute; left:0; top:-34px; width:100%; height:34px;
+    background:var(--gold-soft);
+    animation:trickle 2.4s ease-in-out infinite;
+  }
+  @keyframes trickle{
+    0%{top:-34px;} 60%{top:34px;} 100%{top:34px;}
+  }
+
+  /* ---------- section shell ---------- */
+  section{padding:118px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head h2{font-size:clamp(30px,3vw,42px); line-height:1.12; color:var(--cream);}
+  .section-head p{margin-top:16px; color:var(--muted); font-size:16px; max-width:52ch;}
+  .kicker{color:var(--gold-soft); font-size:13.5px; font-weight:500; margin-bottom:14px; display:block;}
+
+  /* ---------- reality section ---------- */
+  .reality{display:grid; grid-template-columns:.95fr 1.05fr; gap:64px; align-items:start;}
+  .reality-text p{color:var(--muted); font-size:16.5px; margin-bottom:18px; max-width:44ch;}
+  .pull{
+    margin-top:26px; padding:22px 24px;
+    border-left:2px solid var(--gold-soft);
+    color:var(--gold-soft); font-family:'Fraunces',serif; font-size:19px; font-style:italic;
+    max-width:42ch; line-height:1.4;
+  }
+
+  .glass-card{
+    position:relative;
+    background:var(--glass-fill);
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    padding:40px;
+    overflow:hidden;
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  .glass-card::before{
+    content:'';
+    position:absolute; inset:0;
+    background:radial-gradient(140% 90% at 100% 0%, rgba(196,31,68,.12), transparent 55%);
+    pointer-events:none;
+  }
+  .glass-card:hover{border-color:rgba(196,31,68,.4); transform:translateY(-4px);}
+
+  .checklist{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px;}
+  .checklist li{
+    display:flex; align-items:flex-start; gap:14px;
+    color:var(--cream); font-size:15px;
+  }
+  .checklist .tick{
+    flex:none; width:22px; height:22px; border-radius:50%;
+    background:rgba(196,31,68,.15); border:1px solid var(--gold-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; color:var(--gold-soft); margin-top:1px;
+  }
+
+  /* ---------- mission banner ---------- */
+  .mission{
+    background:linear-gradient(120deg, var(--violet) 0%, var(--violet-deep) 100%);
+    border-radius:46px;
+    max-width:1180px; margin:0 auto;
+    padding:96px 60px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .mission .blob{
+    position:absolute; width:480px; height:480px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(245,240,230,.14), transparent 65%);
+    top:-180px; right:-140px;
+    animation:drift 14s ease-in-out infinite;
+  }
+  @keyframes drift{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(-24px,26px) scale(1.06);}
+  }
+  .mission h2{
+    position:relative;
+    font-size:clamp(28px,3.6vw,44px);
+    line-height:1.22;
+    max-width:16ch;
+    margin:0 auto 36px;
+  }
+  .mission h2 em{color:var(--gold-soft); font-style:italic;}
+
+  /* ---------- coach section ---------- */
+  .coach{display:grid; grid-template-columns:.85fr 1.15fr; gap:70px; align-items:center;}
+  .coach-visual{position:relative; display:flex; align-items:center; justify-content:center; min-height:440px;}
+  .coach-ring{
+    position:absolute; width:300px; height:300px; border-radius:50%;
+    border:1px dashed rgba(237,230,216,.18);
+    animation:spinReverse 30s linear infinite;
+  }
+  .coach-portrait{
+    width:250px; height:310px;
+    border-radius:130px 130px 30px 30px;
+    background:linear-gradient(165deg,#6D001A,#20000A 75%);
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 40px 70px -22px rgba(0,0,0,.65);
+    display:flex; align-items:flex-end; justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .coach-portrait::after{
+    content:'EK';
+    font-family:'Fraunces',serif; font-size:26px; color:var(--gold-soft);
+    margin-bottom:26px; letter-spacing:.04em;
+  }
+  .seal{
+    position:absolute; bottom:-6px; right:6px;
+    width:96px; height:96px; border-radius:50%;
+    background:var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 14px 30px -8px rgba(109,0,26,.5);
+  }
+  .seal-text{
+    width:100%; height:100%; position:relative;
+    animation:spin 16s linear infinite;
+  }
+  .seal-text svg{width:100%; height:100%;}
+  .seal-center{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:11px; color:#1A0006; font-weight:650; text-align:center;
+  }
+
+  .coach-body h2{font-size:clamp(28px,3vw,38px); margin-bottom:22px; max-width:14ch;}
+  .coach-body p{color:var(--muted); font-size:16px; margin-bottom:16px; max-width:52ch;}
+  .coach-actions{margin-top:26px; display:flex; align-items:center; gap:20px;}
+
+  /* ---------- programs (glass pricing style) ---------- */
+  .programs-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .program-card{
+    position:relative;
+    background:var(--glass-fill);
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius);
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+    padding:44px 38px;
+    overflow:hidden;
+    transition:transform .35s ease, border-color .35s ease;
+  }
+  .program-card.featured{
+    background:linear-gradient(160deg, rgba(245,240,230,.14), rgba(255,255,255,.05));
+    border-color:rgba(196,31,68,.45);
+  }
+  .program-card:hover{transform:translateY(-6px);}
+  .program-ghost{
+    position:absolute; top:-4%; right:-4%;
+    font-size:120px; font-weight:650; font-family:'Fraunces',serif;
+    color:rgba(237,230,216,.05);
+    pointer-events:none;
+    filter:blur(1px);
+  }
+  .program-tag{color:var(--gold-soft); font-size:13px; font-weight:500; margin-bottom:16px; display:block;}
+  .program-card h3{font-size:26px; margin-bottom:6px; color:var(--cream);}
+  .program-duration{color:var(--muted); font-size:14.5px; margin-bottom:22px;}
+  .program-card .checklist{margin-bottom:30px;}
+  .program-card .btn{width:100%; justify-content:center;}
+
+  /* ---------- testimonials ---------- */
+  .testi-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .testi-card{
+    background:var(--glass-fill);
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    padding:36px;
+  }
+  .testi-head{display:flex; align-items:center; gap:14px; margin-bottom:20px;}
+  .avatar-dot{
+    width:44px; height:44px; border-radius:50%;
+    background:linear-gradient(160deg,var(--gold),#D9CFC0);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:650; color:#1A0006; font-size:16px;
+  }
+  .testi-name{font-family:'Fraunces',serif; font-size:18px; color:var(--cream);}
+  .testi-role{color:var(--muted); font-size:13px;}
+  .testi-card blockquote{
+    margin:0; color:var(--cream); font-size:15.5px; line-height:1.65;
+  }
+
+  /* ---------- final cta ---------- */
+  .final-cta{
+    max-width:1180px; margin:0 auto;
+    background:linear-gradient(130deg, var(--violet-deep), var(--violet));
+    border-radius:46px;
+    padding:90px 60px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .final-cta h2{font-size:clamp(28px,3.4vw,40px); margin-bottom:14px;}
+  .final-cta .sub{color:var(--muted); margin-bottom:34px; font-size:16px;}
+
+  /* ---------- footer ---------- */
+  footer{background:#030000; border-top:1px solid rgba(255,255,255,.07); padding:80px 0 30px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr .8fr .9fr 1fr; gap:40px; margin-bottom:60px;}
+  .foot-brand p{color:var(--muted); font-size:14.5px; margin-top:16px; max-width:34ch;}
+  .foot-col h4{font-family:'Inter',sans-serif; font-size:13.5px; color:var(--gold-soft); font-weight:600; margin-bottom:18px;}
+  .foot-col a{display:block; color:var(--muted); font-size:14.5px; margin-bottom:12px; transition:color .2s ease;}
+  .foot-col a:hover{color:var(--cream);}
+  .newsletter{display:flex; gap:8px; margin-top:8px;}
+  .newsletter input{
+    flex:1; background:var(--glass-fill); border:1px solid var(--glass-border);
+    border-radius:10px; padding:11px 14px; color:var(--cream); font-size:13.5px;
+  }
+  .newsletter input::placeholder{color:var(--muted);}
+  .socials{display:flex; gap:12px; margin-top:22px;}
+  .socials a{
+    width:36px; height:36px; border-radius:50%;
+    border:1px solid var(--glass-border);
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px;
+  }
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,.07);
+    padding-top:26px;
+    display:flex; justify-content:space-between; color:var(--muted); font-size:13px;
+  }
+
+  /* ---------- reveal on scroll (single restrained treatment) ---------- */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1000px){
+    .hero{grid-template-columns:1fr;}
+    .reality, .coach{grid-template-columns:1fr;}
+    .programs-grid, .testi-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .hero-ghost{font-size:90px;}
+  }
+  @media (max-width:720px){
+    nav.links{display:none;}
+    .wrap,.hero,.scroll-cue{padding-left:22px; padding-right:22px;}
+    .hero-panel{padding:44px 30px;}
+    .mission,.final-cta{padding:64px 30px; border-radius:30px;}
+    .foot-grid{grid-template-columns:1fr;}
+    .nav-inner{padding:16px 22px;}
+    section{padding:80px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Edith Kanzie<span>COACHING</span></div>
+    <nav class="links">
+      <a href="#" class="active">Accueil</a>
+      <a href="#">À Propos</a>
+      <a href="#">Services</a>
+      <a href="#">RESET Event</a>
+      <a href="#">Témoignages</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-glass">Réserver un appel</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-panel">
+    <div class="hero-ghost">CONFIANCE</div>
+    <span class="eyebrow"><span class="dot"></span>Coaching Leadership &amp; Confiance</span>
+    <h1>
+      <span class="line">Deviens la femme</span>
+      <span class="line">qui ne s'<span class="accent">efface</span> plus.</span>
+    </h1>
+    <p class="hero-sub">Tu gères, tu assumes, tu avances. Mais au fond, tu te sens parfois invisible. Il est temps de te choisir, enfin.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-gold">Réserver un appel gratuit</a>
+      <span class="microcopy">30 min · sans engagement</span>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="orbit"></div>
+    <div class="monogram"><span>EK</span></div>
+    <div class="badge-float b1">
+      <div>
+        <strong>150+</strong>
+        <small>femmes accompagnées</small>
+      </div>
+    </div>
+    <div class="badge-float b2">
+      <div>
+        <strong>2021</strong>
+        <small>coach certifiée depuis</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="scroll-cue"><div class="stick"></div>Découvrir</div>
+
+<section class="reality wrap reveal">
+  <div class="reality-text">
+    <span class="kicker">Ce que tu vis</span>
+    <h2>La réalité de la femme forte, ce n'est pas toujours visible.</h2>
+    <p>En tant que femme, et particulièrement dans nos cultures africaines, on nous apprend très tôt à être le pilier. Mais à quel prix ?</p>
+    <div class="pull">"Ce que tu ressens n'est pas un défaut. C'est un signal qu'il est temps de changer."</div>
+  </div>
+
+  <div class="glass-card">
+    <ul class="checklist">
+      <li><span class="tick">✓</span>Vous portez les attentes de votre famille et de votre communauté sur vos épaules.</li>
+      <li><span class="tick">✓</span>Vous avez réussi professionnellement, mais vous vous sentez vide à l'intérieur.</li>
+      <li><span class="tick">✓</span>Vous n'arrivez pas à dire "non" sans culpabiliser.</li>
+      <li><span class="tick">✓</span>Vous doutez de votre légitimité, malgré vos compétences évidentes.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="mission">
+    <div class="blob"></div>
+    <h2>Je ne suis pas là pour te <em>motiver</em>. Je suis là pour te <em>transformer</em>.</h2>
+    <p style="color:var(--muted); max-width:46ch; margin:0 auto 36px; position:relative;">Mon approche va au-delà des simples conseils. Nous allons travailler en profondeur pour déconstruire ce qui te freine et bâtir des fondations solides.</p>
+    <a href="#" class="btn btn-gold" style="position:relative;">Commencer ma transformation</a>
+  </div>
+</section>
+
+<section class="coach wrap reveal">
+  <div class="coach-visual">
+    <div class="coach-ring"></div>
+    <div class="coach-portrait">
+      <div class="seal">
+        <div class="seal-text">
+          <svg viewBox="0 0 100 100">
+            <defs><path id="circlePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/></defs>
+            <text font-size="8.6" fill="#1A0006" letter-spacing="1.5">
+              <textPath href="#circlePath">COACH CERTIFIÉE • DEPUIS 2021 • </textPath>
+            </text>
+          </svg>
+        </div>
+        <div class="seal-center">EST.<br>2021</div>
+      </div>
+    </div>
+  </div>
+  <div class="coach-body">
+    <span class="kicker">Votre coach</span>
+    <h2>Rencontrez Edith Kanzie</h2>
+    <p>J'ai été cette femme qui faisait béni-oui-oui, forte, disponible et toujours jovial. Mais intérieurement, j'étais épuisée, perdue, et j'avais l'impression de ne jamais être assez comprise.</p>
+    <p>Aujourd'hui, j'accompagne des femmes comme vous, fortes et ambitieuses, mais fatiguées de s'oublier. Ma mission est de vous aider à vous retrouver et à devenir pleinement la meilleure version de vous-même.</p>
+    <div class="coach-actions">
+      <a href="#" class="btn btn-ghost">Découvrir mon histoire</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="section-head">
+    <span class="kicker">Mes accompagnements</span>
+    <h2>Deux chemins, un même objectif : te retrouver.</h2>
+    <p>Que tu aies besoin d'un déclic rapide ou d'une transformation en profondeur, il y a un accompagnement pensé pour toi.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card">
+      <div class="program-ghost">21</div>
+      <span class="program-tag">Coaching court</span>
+      <h3>21 Jours Boost</h3>
+      <div class="program-duration">3 semaines · intensif</div>
+      <ul class="checklist">
+        <li><span class="tick">✓</span>Bilan de la situation actuelle</li>
+        <li><span class="tick">✓</span>Identification de tes blocages immédiats</li>
+        <li><span class="tick">✓</span>Plan d'action sur 3 semaines</li>
+        <li><span class="tick">✓</span>Suivi quotidien via WhatsApp</li>
+      </ul>
+      <a href="#" class="btn btn-glass">Réserver mon Boost</a>
+    </div>
+
+    <div class="program-card featured">
+      <div class="program-ghost">360</div>
+      <span class="program-tag">Programme signature</span>
+      <h3>Reset 360</h3>
+      <div class="program-duration">3 mois · accompagnement profond</div>
+      <ul class="checklist">
+        <li><span class="tick">✓</span>Séances bi-mensuelles d'1h30</li>
+        <li><span class="tick">✓</span>Travail sur l'enfant intérieur et les traumas</li>
+        <li><span class="tick">✓</span>Outils concrets d'affirmation de soi</li>
+        <li><span class="tick">✓</span>Accès direct entre les séances</li>
+      </ul>
+      <a href="#" class="btn btn-gold">Postuler pour Reset 360</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="section-head">
+    <span class="kicker">Elles ont osé</span>
+    <h2>Elles ont franchi le pas.</h2>
+    <p>Des histoires vraies de femmes qui ont décidé de ne plus s'oublier.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-head">
+        <div class="avatar-dot">CM</div>
+        <div>
+          <div class="testi-name">Clara M.</div>
+          <div class="testi-role">Reset 360</div>
+        </div>
+      </div>
+      <blockquote>"J'ai enfin compris ma valeur. L'accompagnement d'Edith a été un véritable déclic dans ma vie professionnelle et personnelle. Je ne m'excuse plus d'exister."</blockquote>
+    </div>
+    <div class="testi-card">
+      <div class="testi-head">
+        <div class="avatar-dot">JK</div>
+        <div>
+          <div class="testi-name">Jenny K.</div>
+          <div class="testi-role">21 Jours Boost</div>
+        </div>
+      </div>
+      <blockquote>"Un voyage intérieur puissant. Je ne subis plus ma vie, je la choisis chaque jour avec sérénité. Merci Edith pour ta bienveillance et ta justesse."</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="final-cta wrap" style="padding-left:60px; padding-right:60px;">
+    <h2>Tu veux continuer comme ça ?<br>Non, n'est-ce pas ?</h2>
+    <p class="sub">Le premier pas est souvent le plus difficile. Faisons-le ensemble.</p>
+    <a href="#" class="btn btn-gold">Réserver mon appel diagnostic gratuit</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">Edith Kanzie<span>COACHING</span></div>
+        <p>Accompagnement sur-mesure pour les femmes ambitieuses qui souhaitent s'affirmer, retrouver leur confiance et créer une vie alignée avec leurs valeurs profondes.</p>
+        <div class="socials">
+          <a href="#">in</a>
+          <a href="#">ig</a>
+          <a href="#">f</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Liens rapides</h4>
+        <a href="#">Accueil</a>
+        <a href="#">Services</a>
+        <a href="#">À Propos</a>
+        <a href="#">Témoignages</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="#">contact@ekcoaching.com</a>
+        <a href="#">Consultations en ligne &amp; Afrique</a>
+      </div>
+      <div class="foot-col">
+        <h4>Restons en contact</h4>
+        <div class="newsletter">
+          <input type="email" placeholder="Votre adresse email">
+          <a href="#" class="btn btn-gold" style="padding:11px 16px;">→</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 EK Coaching. Tous droits réservés.</span>
+      <span>Mentions légales · Politique de confidentialité</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
