@@ -58,6 +58,9 @@ export default function Navbar() {
         </nav>
 
         <div className="nav-end">
+          <Link className="btn btn-g nav-cta" href="/contact" onClick={closeMenu}>
+            Réserver un appel
+          </Link>
           <button
             className="nav-burger"
             type="button"
