@@ -14,10 +14,6 @@ export default function ServicesPage() {
         lead="Choisis l'accompagnement qui correspond à ton besoin actuel — du coaching individuel sur mesure aux événements collectifs bienveillants."
         image="/images/photo_atelier.avif"
         imageAlt="Atelier EK Coaching"
-        tagText="Programmes 2026"
-        portraitAvatar="/images/coach.png"
-        portraitName="Edith Kanzie"
-        portraitRole="Coach certifiée"
       />
 
       <section className="blk">

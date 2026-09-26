@@ -1,8 +1,8 @@
-import { ArrowRight, Check, Star, Clock, Users, Award, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Star, Clock } from "lucide-react";
 import Link from "next/link";
 import CtaBand from "./CtaBand";
 import FaqList from "./FaqList";
-import { offers, testimonials, tickerItems } from "../lib/data";
+import { offers, testimonials } from "../lib/data";
 
 const pains = [
   {
@@ -60,8 +60,6 @@ export default function CoachingLandingPage() {
       <section className="hero">
         <div className="wrap hero-grid">
           <div className="hero-side">
-            <span className="hero-vlabel">EK · Coaching depuis 2021</span>
-
             <div className="rise">
               <span className="hero-tag">Leadership · Confiance · Présence</span>
             </div>
@@ -102,49 +100,16 @@ export default function CoachingLandingPage() {
           </div>
 
           <div className="hero-visual rise-slow">
-            <div className="hero-portrait float-slow">
+            <div className="hero-portrait">
               <img src="/images/coach.png" alt="Edith Kanzie, coach certifiée" />
             </div>
-
-            <div className="hero-hud-top float-slower">
-              <small>Impact</small>
-              <strong>150+</strong>
-              <span>transformations</span>
-            </div>
-
-            <div className="hero-hud-mid float-slow">
-              <span className="hero-hud-mid-ico">
-                <Award size={16} />
-              </span>
-              <span>
-                <strong>Edith Kanzie</strong>
-                <span>Coach certifiée · depuis 2021</span>
-              </span>
-            </div>
-
-            <div className="hero-hud-cert float-slower">
-              <span className="hero-hud-cert-ico">
-                <Sparkles size={12} />
-              </span>
-              <span>
-                <strong>Certifiée</strong>
-                <span> · John C. Maxwell</span>
-              </span>
-            </div>
+            <p className="hero-caption">
+              <strong>Edith Kanzie</strong>
+              <span>Coach certifiée · Leadership &amp; confiance</span>
+            </p>
           </div>
         </div>
       </section>
-
-      {/* RULER — Elegant keyword marquee */}
-      <div className="ruler" aria-hidden="true">
-        <div className="ruler-track">
-          {[...tickerItems, ...tickerItems, ...tickerItems].map((item, i) => (
-            <span className="ruler-item" key={`${item}-${i}`}>
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
 
       {/* REALITY — Editorial asymmetric with bento cards */}
       <section className="blk">

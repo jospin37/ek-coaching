@@ -1,5 +1,6 @@
 import { Camera, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { navItems, siteInfo } from "../lib/data";
 
 export default function Footer() {
@@ -17,11 +18,13 @@ export default function Footer() {
       <div className="wrap foot-main">
         <div className="foot-brand">
           <div className="foot-blogo">
-            <span className="foot-blogo-ico">EK</span>
-            <span>
-              <strong>Edith Kanzie</strong>
-              <span>Coaching</span>
-            </span>
+            <Image
+              className="foot-logo"
+              src="/images/logo_Kandzi.webp"
+              alt="EK Coaching"
+              width={1600}
+              height={995}
+            />
           </div>
           <p>
             Coaching leadership &amp; confiance.

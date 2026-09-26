@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { navItems } from "../lib/data";
 
 export default function Navbar() {
@@ -36,11 +37,14 @@ export default function Navbar() {
     <header className={cls}>
       <div className="topbar-inner">
         <Link className="brand" href="/" aria-label="Accueil EK Coaching">
-          <span className="brand-ico">EK</span>
-          <span className="brand-name">
-            <strong>Edith Kanzie</strong>
-            <small>Coaching</small>
-          </span>
+          <Image
+            className="brand-mark"
+            src="/images/logo_Kandzi.webp"
+            alt=""
+            width={1600}
+            height={995}
+            preload
+          />
         </Link>
 
         <nav className="pillnav" aria-label="Navigation principale">

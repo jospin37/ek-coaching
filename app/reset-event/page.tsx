@@ -54,7 +54,7 @@ export default function ResetEventPage() {
         <div className="wrap-md">
           <div className="reveal">
             <span className="kicker violet">Tu te reconnais ?</span>
-            <h2 style={{ fontSize: "clamp(1.9rem, 3.2vw, 2.6rem)", marginTop: 18, marginBottom: 20, maxWidth: 18 }}>
+            <h2 className="reset-copy-title">
               Tu cours toute la journée.
             </h2>
             <p className="lede">
@@ -116,15 +116,10 @@ export default function ResetEventPage() {
       </section>
 
       <section className="blk">
-        <div className="wrap" style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1.05fr) minmax(0, 0.95fr)",
-          gap: 56,
-          alignItems: "start",
-        }}>
+        <div className="wrap reset-details">
           <div className="reveal">
             <span className="kicker violet">Au départ</span>
-            <h2 style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)", marginTop: 18, marginBottom: 24, maxWidth: 18 }}>
+            <h2 className="reset-outcomes-title">
               Ce que tu repartiras avec
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -166,14 +161,12 @@ export default function ResetEventPage() {
           </div>
 
           <aside
-            className="reveal d1"
+            className="reveal d1 reset-event-info"
             style={{
               padding: "40px 36px",
-              background: "linear-gradient(160deg, var(--violet-900) 0%, #34103B 100%)",
+              background: "linear-gradient(160deg, var(--violet-900) 0%, #5B3059 100%)",
               borderRadius: "var(--r-xl)",
               color: "#fff",
-              position: "sticky",
-              top: "calc(var(--nav-h) + 20px)",
             }}
           >
             <h3 style={{

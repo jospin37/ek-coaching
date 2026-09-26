@@ -26,20 +26,8 @@ export const metadata: Metadata = {
   },
   description: "Coaching leadership et confiance pour les femmes qui veulent cesser de s'effacer.",
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
+    icon: [{ url: "/images/logo_Kandzi.webp", type: "image/webp", sizes: "any" }],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-    other: [
-      {
-        rel: "icon",
-        type: "image/png",
-        sizes: "192x192",
-        url: "/android-chrome-192x192.png",
-      },
-    ],
   },
   openGraph: {
     title: "EK Coaching — Edith Kanzie",
