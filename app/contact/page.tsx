@@ -1,62 +1,228 @@
-import { Check, Globe2, Mail, Phone } from "lucide-react";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+"use client";
+
+import { CalendarDays, Camera, Check, Mail, MapPin, Phone, Star, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import BookingModal from "../../components/BookingModal";
 import ContactForm from "../../components/ContactForm";
+import PageHero from "../../components/PageHero";
+import { siteInfo } from "../../lib/data";
+
+function Stars() {
+  return (
+    <div className="testi-stars" aria-hidden="true">
+      <Star size={13} fill="currentColor" />
+      <Star size={13} fill="currentColor" />
+      <Star size={13} fill="currentColor" />
+      <Star size={13} fill="currentColor" />
+      <Star size={13} fill="currentColor" />
+    </div>
+  );
+}
 
 export default function ContactPage() {
+  const [bookingOpen, setBookingOpen] = useState(false);
   return (
-    <>
-      <Navbar />
-
-      <main className="contact-page">
-        <section className="contact-hero">
-          <h1>Et si tu prenais enfin du temps pour toi ?</h1>
-          <p>Que ce soit pour réserver un appel, poser une question sur un programme,
-            ou simplement échanger, tu es au bon endroit.</p>
-        </section>
-
-        <section className="contact-wrap">
-          <aside className="contact-sidebar">
-            <div className="side-card profile">
-              <div className="ph-wrap">
-                <img src="/images/coach.png" alt="Edith Kanzie" />
+    <main>
+      <section className="ph">
+        <div className="wrap">
+          <div className="ph-grid">
+            <div className="ph-copy">
+              <span className="kicker">Contact &amp; prise de RDV</span>
+              <h1 dangerouslySetInnerHTML={{ __html: "Et si tu prenais enfin du <em>temps</em> pour toi ?" }} />
+              <p className="ph-lede" style={{ marginTop: 22 }}>
+                Réserver un appel découverte, poser une question, ou simplement échanger — tu es au bon endroit. Je te réponds sous 48h.
+              </p>
+              <div style={{ marginTop: 32, display: "flex", flexWrap: "wrap", gap: 12 }}>
+                <button
+                  type="button"
+                  className="btn btn-g"
+                  onClick={() => setBookingOpen(true)}
+                >
+                  <CalendarDays aria-hidden="true" size={16} />
+                  Réserver un appel
+                  <ArrowRight size={16} aria-hidden="true" />
+                </button>
+                <a className="btn btn-ghost" href="#form">
+                  Poser une question
+                </a>
               </div>
-              <div className="profile-copy">
-                <h4>Edith Kanzie</h4>
-                <p>Coach certifiée Leadership &amp; Confiance. J’aide les femmes à transformer leurs épreuves en force pour révéler leur plein potentiel et retrouver confiance en elles.</p>
+              <div style={{ marginTop: 28, display: "flex", flexDirection: "column", gap: 10 }}>
+                {[
+                  "Appel découverte gratuit de 30 min",
+                  "100% confidentiel & sans engagement",
+                  "Échange en visio ou appel téléphonique",
+                ].map((point) => (
+                  <span
+                    key={point}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 10,
+                      padding: "10px 16px",
+                      background: "var(--violet-50)",
+                      borderRadius: "var(--r-md)",
+                      fontSize: 14,
+                      color: "var(--violet-900)",
+                      fontWeight: 500,
+                    }}
+                  >
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        width: 18,
+                        height: 18,
+                        display: "grid",
+                        placeItems: "center",
+                        borderRadius: "50%",
+                        background: "var(--violet-900)",
+                        color: "var(--gold-500)",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <Check size={11} />
+                    </span>
+                    {point}
+                  </span>
+                ))}
               </div>
             </div>
+            <div className="ph-media">
+              <div className="ph-img-frame">
+                <img src="/images/coach2.png" alt="Edith Kanzie en appel" />
+              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  bottom: 0,
+                  padding: "14px 18px 14px 14px",
+                  background: "#fff",
+                  border: "1px solid var(--line)",
+                  borderRadius: "var(--r-lg) var(--r-lg) var(--r-lg) 0",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                  boxShadow: "var(--sh-2)",
+                }}
+              >
+                <img
+                  src="/images/coach.png"
+                  alt=""
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    border: "2px solid var(--gold-500)",
+                    padding: 2,
+                    background: "var(--violet-50)",
+                  }}
+                />
+                <span>
+                  <strong
+                    style={{
+                      display: "block",
+                      fontFamily: "var(--font-display), Georgia, serif",
+                      fontSize: 14,
+                      color: "var(--violet-900)",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Edith Kanzie
+                  </strong>
+                  <span
+                    style={{
+                      display: "block",
+                      fontSize: 11,
+                      color: "var(--muted)",
+                      marginTop: 2,
+                    }}
+                  >
+                    Coach certifiée · Libreville & en ligne
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="side-card discover">
-              <h3>Appel Découverte</h3>
-              <p>Cet appel gratuit de 30 minutes est fait pour toi si :</p>
-              <ul className="checklist">
-                <li><span className="tick"><Check aria-hidden="true" /></span>Tu te sens bloquée dans ta vie ou perso</li>
-                <li><span className="tick"><Check aria-hidden="true" /></span>Tu veux évoluer mais tu ne sais pas comment</li>
-                <li><span className="tick"><Check aria-hidden="true" /></span>Tu veux comprendre ce qui te freine réellement</li>
+      <section className="blk">
+        <div className="wrap cg">
+          <aside className="cside reveal">
+            <div className="cside-head">
+              <img src="/images/coach.png" alt="Edith Kanzie" />
+              <span>
+                <strong>Edith Kanzie</strong>
+                <span>Coach certifiée · Leadership &amp; Confiance</span>
+              </span>
+            </div>
+
+            <div className="cside-sec">
+              <h4>Appel découverte — 30 min</h4>
+              <Stars />
+              <p style={{
+                fontSize: 14,
+                color: "rgba(255,255,255,0.78)",
+                marginBottom: 14,
+                lineHeight: 1.65,
+              }}>
+                Cet échange est fait pour toi si&nbsp;:
+              </p>
+              <ul className="ccheck">
+                {[
+                  "Tu te sens bloquée dans ta vie perso ou pro",
+                  "Tu veux évoluer mais tu ne sais pas comment",
+                  "Tu veux comprendre ce qui te freine vraiment",
+                ].map((item) => (
+                  <li key={item}>
+                    <span className="ccheck-tick">
+                      <Check size={11} aria-hidden="true" />
+                    </span>
+                    {item}
+                  </li>
+                ))}
               </ul>
-              <a className="btn btn-solid" href="#message">Je veux un diagnostic gratuit</a>
+              <button
+                type="button"
+                className="btn btn-g"
+                style={{ marginTop: 18, width: "100%" }}
+                onClick={() => setBookingOpen(true)}
+              >
+                <CalendarDays aria-hidden="true" size={16} />
+                Réserver mon appel
+              </button>
             </div>
 
-            <div className="side-card info">
-              <h3>Informations</h3>
-              <div className="row"><span className="icn"><Mail aria-hidden="true" /></span><a href="mailto:contact@ekcoaching.com">contact@ekcoaching.com</a></div>
-              <div className="row"><span className="icn"><Phone aria-hidden="true" /></span><a href="tel:+241652819590">+241 652 819 590</a></div>
-              <div className="row"><span className="icn"><Globe2 aria-hidden="true" /></span><span>Consultations en ligne &amp; Afrique</span></div>
-            </div>
-
-            <div className="side-card message-prompt">
-              <h3>M&apos;envoyer un message</h3>
-              <p>Une question spécifique sur un programme ? Écris-moi directement via le formulaire.</p>
-              <a className="btn btn-solid" href="#message">Accéder au formulaire</a>
+            <div className="cside-sec">
+              <h4>Coordonnées</h4>
+              <div className="cside-list">
+                <a href={`mailto:${siteInfo.email}`}>
+                  <Mail aria-hidden="true" size={15} />
+                  {siteInfo.email}
+                </a>
+                <a href={siteInfo.phoneHref}>
+                  <Phone aria-hidden="true" size={15} />
+                  {siteInfo.phone}
+                </a>
+                <p>
+                  <MapPin aria-hidden="true" size={15} />
+                  {siteInfo.location}
+                </p>
+                <p>
+                  <Camera aria-hidden="true" size={15} />
+                  {siteInfo.instagram}
+                </p>
+              </div>
             </div>
           </aside>
 
-          <ContactForm />
-        </section>
-      </main>
-
-      <Footer />
-    </>
+          <div id="form" className="reveal d1">
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+    </main>
   );
 }

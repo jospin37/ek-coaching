@@ -1,42 +1,99 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { navItems, siteInfo } from "../lib/data";
-import BookingModal from "./BookingModal";
+import { navItems } from "../lib/data";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [bookingOpen, setBookingOpen] = useState(false);
+  const [solid, setSolid] = useState(false);
+  const isHome = pathname === "/";
+
+  useEffect(() => {
+    const onScroll = () => setSolid(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
+  const goToContact = () => {
+    setMenuOpen(false);
+    router.push("/contact");
+  };
+
+  const cls = [
+    "topbar",
+    isHome ? "home" : "",
+    solid || menuOpen ? "solid" : "",
+  ].filter(Boolean).join(" ");
 
   return (
-    <>
-      <header>
-        <Link className="logo" href="/" aria-label="Accueil">
-          <img className="logo-img" src="/images/logo.png" alt="Edith Kanzie Coaching" />
-          <span className="logo-wordmark">EK <small>COACHING</small></span>
+    <header className={cls}>
+      <div className="topbar-inner">
+        <Link className="brand" href="/" aria-label="Accueil EK Coaching">
+          <span className="brand-ico">EK</span>
+          <span className="brand-name">
+            <strong>Edith Kanzie</strong>
+            <small>Coaching</small>
+          </span>
         </Link>
-        <button className="menu-toggle" type="button" aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-        </button>
-        <nav className={menuOpen ? "is-open" : ""}>
-          <ul>
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a href={item.href} className={pathname === item.href ? "active" : ""} aria-current={pathname === item.href ? "page" : undefined} onClick={() => setMenuOpen(false)}>{item.label}</a>
-              </li>
-            ))}
-          </ul>
+
+        <nav className="pillnav" aria-label="Navigation principale">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={closeMenu}
+              className={pathname === item.href ? "active" : ""}
+              aria-current={pathname === item.href ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
-        <div className="header-right">
-          <a className="header-phone" href={`tel:${siteInfo.phone.replace(/[^\d+]/g, "")}`}>{siteInfo.phone}</a>
-          <button className="btn btn-solid" type="button" onClick={() => setBookingOpen(true)}>Réserver un appel</button>
+
+        <div className="nav-end">
+          <button
+            className="nav-burger"
+            type="button"
+            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <X aria-hidden="true" size={18} /> : <Menu aria-hidden="true" size={18} />}
+          </button>
         </div>
-      </header>
-      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
-    </>
+      </div>
+
+      <div className={`mnav ${menuOpen ? "open" : ""}`}>
+        <nav aria-label="Navigation mobile">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={closeMenu}
+              className={pathname === item.href ? "active" : ""}
+              aria-current={pathname === item.href ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="mnav-cta">
+          <button
+            className="btn btn-g"
+            type="button"
+            onClick={goToContact}
+          >
+            Me contacter
+          </button>
+        </div>
+      </div>
+    </header>
   );
 }

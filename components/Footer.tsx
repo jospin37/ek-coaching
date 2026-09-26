@@ -1,48 +1,88 @@
-import { Camera, Globe2, Mail, MapPin } from "lucide-react";
+import { Camera, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
-import { siteInfo } from "../lib/data";
+import { navItems, siteInfo } from "../lib/data";
 
 export default function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="footer-grid">
-        <div className="footer-brand">
-          <img className="footer-logo" src="/images/logo.png" alt="Edith Kanzie Coaching" />
-          <div className="footer-kicker">EK / COACHING STUDIO</div>
-          <h3>Rechargez votre cœur, transformez votre esprit.</h3>
-          <p>Coaching santé &amp; fitness axé sur la foi, pour ceux qui sont prêts à reconstruire une force durable, de l&apos;intérieur.</p>
-          <div className="socials">
-            <a className="fb" href="#" aria-label="Facebook"><Globe2 aria-hidden="true" /></a>
-            <a className="ig" href="#" aria-label="Instagram"><Camera aria-hidden="true" /></a>
+    <footer className="foot">
+      <div className="wrap foot-top">
+        <span className="foot-mono">E · K · COACHING</span>
+        <h2>Revenir à soi, sans s&apos;effacer.</h2>
+        <p>
+          Un accompagnement clair, exigeant et bienveillant
+          pour les femmes qui portent trop — et veulent enfin se choisir.
+        </p>
+      </div>
+
+      <div className="wrap foot-main">
+        <div className="foot-brand">
+          <div className="foot-blogo">
+            <span className="foot-blogo-ico">EK</span>
+            <span>
+              <strong>Edith Kanzie</strong>
+              <span>Coaching</span>
+            </span>
           </div>
+          <p>
+            Coaching leadership &amp; confiance.
+            Accompagnement individuel et événements collectifs.
+            Libreville et en ligne.
+          </p>
         </div>
-        <div className="footer-col">
-          <h4>Liens rapides</h4>
-          <ul>
-            <li><Link href="/">Accueil</Link></li>
-            <li><a href="/a-propos">À propos</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/temoignages">Témoignages</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
+
+        <div className="foot-col">
+          <h4>Explorer</h4>
+          <nav>
+            {navItems.slice(0, 4).map((item) => (
+              <Link href={item.href} key={item.href}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
         </div>
-        <div className="footer-col">
-          <h4>Contact</h4>
-          <div className="row"><Mail aria-hidden="true" /><a href={`mailto:${siteInfo.email}`}>{siteInfo.email}</a></div>
-          <div className="row"><MapPin aria-hidden="true" /><span>Consultations en ligne &amp; en Afrique</span></div>
+
+        <div className="foot-col">
+          <h4>Pages</h4>
+          <nav>
+            {navItems.slice(4).map((item) => (
+              <Link href={item.href} key={item.href}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
         </div>
-        <div className="footer-col">
-          <h4>Restons connectés</h4>
-          <p style={{ marginBottom: 10 }}>Rejoignez la communauté et recevez des conseils exclusifs pour votre transformation.</p>
-          <div className="newsletter">
-            <input type="email" placeholder="Votre email" />
-            <button type="button">Rejoindre</button>
+
+        <div className="foot-col">
+          <h4>Premier pas</h4>
+          <div className="foot-cinfo">
+            <a href={`mailto:${siteInfo.email}`}>
+              <Mail aria-hidden="true" size={16} />
+              {siteInfo.email}
+            </a>
+            <p>
+              <Phone aria-hidden="true" size={16} />
+              {siteInfo.phone}
+            </p>
+            <p>
+              <MapPin aria-hidden="true" size={16} />
+              {siteInfo.location}
+            </p>
+            <p>
+              <Camera aria-hidden="true" size={16} />
+              {siteInfo.instagram}
+            </p>
+          </div>
+          <div style={{ marginTop: 18 }}>
+            <Link className="btn btn-g" href="/contact">
+              Réserver un appel
+            </Link>
           </div>
         </div>
       </div>
-      <div className="footer-bottom">
+
+      <div className="wrap foot-bottom">
         <span>{siteInfo.copyright}</span>
-        <span><a href="#">Mentions légales</a> &nbsp;·&nbsp; <a href="#">Politique de confidentialité</a></span>
+        <span>Coaching · Gabon &amp; en ligne</span>
       </div>
     </footer>
   );

@@ -1,69 +1,62 @@
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import { Star } from "lucide-react";
+import CtaBand from "../../components/CtaBand";
+import PageHero from "../../components/PageHero";
+import { testimonials } from "../../lib/data";
+
+function Stars() {
+  return (
+    <div className="testi-stars" aria-hidden="true" style={{ marginBottom: 14 }}>
+      <Star size={13} fill="currentColor" />
+      <Star size={13} fill="currentColor" />
+      <Star size={13} fill="currentColor" />
+      <Star size={13} fill="currentColor" />
+      <Star size={13} fill="currentColor" />
+    </div>
+  );
+}
 
 export default function TemoignagesPage() {
   return (
-    <>
-      <Navbar />
+    <main>
+      <PageHero
+        variant="centered"
+        kicker="Témoignages authentiques"
+        title="Elles ont <em>osé</em> révéler leur valeur"
+        lead="Des histoires vraies de femmes fortes, fatiguées de s'oublier, qui ont décidé de reprendre leur vie en main. Leurs mots, leurs transformations."
+      />
 
-      <main className="light-page">
-        <section className="page-hero">
-          <div className="eyebrow"><span></span></div>
-          <h1>Elles ont révélé leur valeur</h1>
-          <p>Des histoires vraies de femmes qui ont décidé de ne plus s&apos;oublier. Leur transformation est la preuve que c&apos;est possible pour toi aussi.</p>
-        </section>
-
-        <section className="band inner-testimonials">
-          <div className="section-label"><span>La preuve</span></div>
-        <div className="testi-grid">
-          <article className="testi-card">
-            <div className="testi-top">
-              <div className="testi-photo">
-                <img src="/images/clara.webp" alt="Clara M." />
-              </div>
-              <h4>Clara M.</h4>
-            </div>
-            <div className="testi-quote">« J&apos;ai enfin compris ma valeur. L&apos;accompagnement d&apos;Edith a été un véritable déclic dans ma vie professionnelle et personnelle. Je ne m&apos;excuse plus d&apos;exister. »</div>
-            <div className="testi-transform"><strong>Sa transformation :</strong> passée d&apos;une manager effacée qui n&apos;osait pas demander d&apos;augmentation à une leader respectée qui assume ses ambitions et pose ses limites.</div>
-          </article>
-
-          <article className="testi-card">
-            <div className="testi-top">
-              <div className="testi-photo">
-                <img src="/images/jenny.webp" alt="Jenny K." />
-              </div>
-              <h4>Jenny K.</h4>
-            </div>
-            <div className="testi-quote">« Un voyage intérieur puissant. Je ne subis plus ma vie, je la choisis chaque jour avec sérénité. Merci Edith pour ta bienveillance et ta justesse. »</div>
-            <div className="testi-transform"><strong>Sa transformation :</strong> a réussi à se libérer du poids des attentes familiales sans créer de rupture, trouver enfin son propre chemin.</div>
-          </article>
-
-          <article className="testi-card">
-            <div className="testi-top">
-              <div className="testi-photo">
-                <img src="/images/Kysha.webp" alt="Kysha T." />
-              </div>
-              <h4>Kysha T.</h4>
-            </div>
-            <div className="testi-quote">« Je m&apos;affirme sans peur aujourd&apos;hui. J&apos;ai appris à prendre la place que je mérite. Le programme Reset 360 a littéralement changé ma perception de moi-même. »</div>
-            <div className="testi-transform"><strong>Sa transformation :</strong> a vaincu son syndrome de l&apos;imposteur et a osé lancer son entreprise après des années d&apos;hésitation.</div>
-          </article>
-
-          <article className="testi-card">
-            <div className="testi-top">
-              <div className="testi-photo">
-                <img src="/images/marie.webp" alt="Marie D." />
-              </div>
-              <h4>Marie D.</h4>
-            </div>
-            <div className="testi-quote">« Le programme m&apos;a permis de structurer mes pensées et de passer à l&apos;action. Je me sens enfin alignée avec mes valeurs profondes, libérée de la culpabilité. »</div>
-            <div className="testi-transform"><strong>Sa transformation :</strong> a retrouvé un équilibre vie pro/vie perso sain après un burn-out, en apprenant à dire non.</div>
-          </article>
+      <section className="blk">
+        <div className="wrap-md">
+          <div className="stories">
+            {testimonials.map((story, i) => (
+              <article className="storyr reveal" key={story.name}>
+                <div className="spic">
+                  <img src={story.img} alt="" />
+                </div>
+                <div>
+                  <span className="prog-num">Témoignage · 0{i + 1}</span>
+                  <Stars />
+                  <div className="sq-mark" aria-hidden="true">“</div>
+                  <p className="sq">{story.quote}</p>
+                  <div className="sxform">
+                    <small>Sa transformation</small>
+                    <p>{story.transform}</p>
+                  </div>
+                  <div className="smeta">
+                    <strong>{story.name}</strong>
+                    <span>{story.focus}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-        </section>
-      </main>
+      </section>
 
-      <Footer />
-    </>
+      <CtaBand
+        title="Prête à écrire la tienne ?"
+        copy="Un appel de 30 minutes pour voir si cet accompagnement est fait pour toi."
+      />
+    </main>
   );
 }
