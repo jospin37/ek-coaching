@@ -55,7 +55,7 @@ function Stars() {
 
 export default function CoachingLandingPage() {
   return (
-    <main>
+    <main className="home-reference">
       {/* HERO — Asymmetric editorial */}
       <section className="hero">
         <div className="wrap hero-grid">
@@ -83,30 +83,25 @@ export default function CoachingLandingPage() {
                 Voir les accompagnements
               </Link>
             </div>
-
-            <div className="hero-proof rise-d4">
-              <div className="hero-proof-item">
-                <span className="hero-proof-num">150+</span>
-                <span>femmes accompagnées</span>
-              </div>
-              <div className="hero-proof-item">
-                <Clock size={14} aria-hidden="true" />
-                <span>30 min · sans engagement</span>
-              </div>
-              <div className="hero-proof-item">
-                <Stars />
-              </div>
-            </div>
+            <p className="hero-microcopy rise-d4">
+              <Clock size={14} aria-hidden="true" />
+              30 min · sans engagement
+            </p>
           </div>
 
           <div className="hero-visual rise-slow">
-            <div className="hero-portrait">
-              <img src="/images/coach.png" alt="Edith Kanzie, coach certifiée" />
+            <div className="orbit" aria-hidden="true" />
+            <div className="monogram" aria-label="Edith Kanzie Coaching">
+              <img src="/images/coach.png" alt="Edith Kanzie" />
             </div>
-            <p className="hero-caption">
-              <strong>Edith Kanzie</strong>
-              <span>Coach certifiée · Leadership &amp; confiance</span>
-            </p>
+            <div className="badge-float badge-one">
+              <strong>150+</strong>
+              <small>femmes accompagnées</small>
+            </div>
+            <div className="badge-float badge-two">
+              <strong>2021</strong>
+              <small>coach certifiée depuis</small>
+            </div>
           </div>
         </div>
       </section>

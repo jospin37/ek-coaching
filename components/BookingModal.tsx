@@ -1,6 +1,7 @@
 "use client";
 
 import { CalendarDays, Check, Clock3, Video, X } from "lucide-react";
+import { createPortal } from "react-dom";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 type BookingModalProps = {
@@ -53,7 +54,7 @@ export default function BookingModal({ open, onClose }: BookingModalProps) {
     setSubmitted(true);
   }
 
-  return (
+  return createPortal(
     <div
       className="book-ov"
       role="presentation"
@@ -193,6 +194,7 @@ export default function BookingModal({ open, onClose }: BookingModalProps) {
           </form>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
